@@ -1,0 +1,22 @@
+@use '../variables.scss' as vars;
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    margin-top: 20%;
+
+    .design-div {
+        width: 2px;
+    }
+
+    .bg-logo {
+        position: absolute;
+        width: 35rem;
+        height: auto;
+        z-index: -1;
+        top: 150px;
+        left: 80px;
+    }
+}

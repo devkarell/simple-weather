@@ -1,0 +1,50 @@
+@use '../variables.scss' as vars;
+
+.presentation-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    width: 42.3rem;
+
+    .app-name {
+        font-size: 4.5rem;
+        font-weight: 700;
+        text-align: start;
+        text-wrap: nowrap;
+        margin-bottom: 17px;
+    }
+
+    .animated-labels {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        align-items: flex-start;
+        margin-bottom: 113px;
+        gap: 6px;
+
+        .animated-label {
+            font-weight: 400;
+            font-size: vars.$animated-label-size;
+            color: vars.$snow-title;
+            text-align: start;
+            text-wrap: nowrap;
+        }
+
+        .animated-label__unselected {
+            color: vars.$animated-label-hidden-color;
+        }
+    }
+
+    .presentation-container {
+        display: flex;
+        justify-content: stretch;
+        align-items: center;
+        gap: 25px;
+
+        .presentation-label {
+            font-size: 1.9rem;
+            font-weight: 300;
+        }
+    }
+}
