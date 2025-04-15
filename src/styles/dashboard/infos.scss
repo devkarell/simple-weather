@@ -1,0 +1,153 @@
+@use '../variables.scss' as vars;
+
+.dashboard .dashboard-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 84rem;
+    padding: 29px 27px;
+
+    background-color: #202537;
+    border-radius: 25px;
+
+    .dashboard-title-container {
+        display: flex;
+        flex-direction: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        width: 100%;
+
+        .dashboard-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #686f85;
+        }
+
+        #expand-dashboard {
+            width: 14.3rem;
+            height: 3.2rem;
+            cursor: pointer;
+
+            background-color: vars.$search-button-bg;
+            border: 1px solid vars.$main-stroke-color;
+            outline: 0px solid vars.$main-stroke-color;
+            border-radius: 8px;
+            color: vars.$snow-title;
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: background-color, outline-width, 0.1s;
+
+            &:hover {
+                background-color: #2e2f4b;
+            }
+
+            &:active {
+                outline-width: 3px;
+            }
+        }
+    }
+
+    .dashboard-data-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: 52px;
+        margin-bottom: 47px;
+
+        .grid-element {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            gap: 6px;
+            min-height: 7.5rem;
+
+            .element-icon {
+                width: 40px;
+                height: auto;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .element-titles {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: stretch;
+                text-align: left;
+                width: calc(100% - 57px);
+
+                margin-left: 57px;
+                gap: 4px;
+
+                .name {
+                    font-size: 2.1rem;
+                    font-weight: 400;
+                    color: #a0abce;
+                    text-wrap: nowrap;
+                }
+
+                .data {
+                    font-size: 3.5rem;
+                    font-weight: 700;
+                    color: #d1d5df;
+                }
+            }
+
+            .expanded-element {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                width: calc(100% - 57px);
+                margin-left: 57px;
+
+                .expanded-info {
+                    font-size: 1.7rem;
+                    font-weight: 400;
+                    color: #a0abce;
+                    margin-bottom: 2px;
+
+                    strong {
+                        color: #a0abce;
+                        font-size: 1.7rem;
+                        font-weight: 700;
+                    }
+                }
+
+                .expanded-small-info {
+                    font-size: 1.5rem;
+                    font-weight: 300;
+                    color: #a0abce;
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+
+    .design-div {
+        width: 100%;
+        height: 2px;
+        margin-bottom: 26px;
+    }
+
+    #last-search-time {
+        font-size: 1.7rem;
+        font-weight: 400;
+        color: #a0abce;
+        margin-bottom: 12px;
+    }
+
+    #search-cord-strong {
+        font-weight: 600;
+
+        #search-cord {
+            font-size: 1.7rem;
+            color: #a0abce;
+        }
+    }
+}

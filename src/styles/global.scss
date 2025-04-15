@@ -4,6 +4,10 @@
 @use './home/searchForm.scss';
 @use './home/provinceSelect2.scss';
 
+// dashboard styles
+@use './dashboard/dashboard.scss';
+@use './dashboard/infos.scss';
+
 // footer style
 @use './footer.scss';
 
@@ -35,10 +39,16 @@ body {
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    // padding-top: 12.5%;
-    // padding-inline: 20%;
-
+    scroll-behavior: smooth;
     background-color: vars.$dark-background;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20%;
     scroll-behavior: smooth;
 }
 

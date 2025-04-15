@@ -1,0 +1,64 @@
+@use '../variables.scss' as vars;
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        font-size: 2.2rem;
+        font-weight: 300;
+        color: #686f85;
+        margin-bottom: 47px;
+    }
+
+    .main-results {
+        display: flex;
+        flex-direction: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 84rem;
+        gap: 308px;
+        margin-bottom: 25px;
+
+        .infos {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 50px;
+            text-align: left;
+            // width: 26.7rem;
+
+            .region-info .city-name {
+                font-size: 6.4rem;
+                font-weight: 700;
+                color: vars.$snow-title;
+            }
+
+            .region-info .province-name {
+                font-size: 2.3rem;
+                font-weight: 300;
+                color: #4c5670;
+            }
+
+            .datetime-temp-info .datetime {
+                font-weight: 300;
+                font-size: 2.3rem;
+                color: #4c5670;
+            }
+
+            .datetime-temp-info .temperature {
+                font-weight: 700;
+                font-size: 6.4rem;
+                color: vars.$snow-title;
+            }
+        }
+
+        .weather-large-icon {
+            width: 26.36rem;
+            height: auto;
+        }
+    }
+}
