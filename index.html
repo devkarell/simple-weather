@@ -4,7 +4,22 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css" />
-        <title>Previsão do Tempo Simples</title>
+
+        <!-- Seo -->
+        <title>Simple Weather - UI/UX | Previsão do Tempo moderna com Dashboards</title>
+        <meta
+            name="description"
+            content="Um projeto pessoal de um app moderno que mostra a previsão do tempo da sua cidade, tudo é mostrado por meio de uma Dashboard completa com um design minimalista." />
+        <meta property="og:title" content="Simple Weather - UI/UX" />
+        <meta
+            property="og:image"
+            content="https://github.com/devkarell/simple-weather/blob/main/public/assets/cloud-fill.svg" />
+        <meta
+            property="og:description"
+            content="Previsão do Tempo moderna com Dashboards | Um projeto pessoal de um app moderno que mostra a previsão do tempo da sua cidade, tudo é mostrado por meio de uma Dashboard completa com um design minimalista." />
+        <meta property="og:url" content="https://github.com/devkarell/simple-weather" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://github.com/devkarell/simple-weather" />
     </head>
 
     <body>
@@ -56,15 +71,18 @@
                 <div class="main-results">
                     <div class="infos">
                         <div class="region-info">
-                            <h1 class="city-name">Tarumã</h1>
-                            <h3 class="province-name">São Paulo, Brasil</h3>
+                            <h2 class="city-name">undefined</h2>
+                            <h4 class="province-name">undefined, Brasil</h4>
                         </div>
                         <div class="datetime-temp-info">
-                            <h3 class="datetime">Hoje é sábado, 02:33AM</h3>
-                            <h1 class="temperature">19 °C</h1>
+                            <h4 class="datetime">Hoje é undefined, 00:00AM</h4>
+                            <h2 class="temperature">- °C</h2>
                         </div>
                     </div>
-                    <img class="weather-large-icon" src="/assets/cloud-moon-fill.svg" alt="" />
+                    <img
+                        class="weather-large-icon"
+                        src="/assets/cloud-moon-fill.svg"
+                        alt="Ícone demonstrativo do clima atual que é: indefinido" />
                 </div>
 
                 <article class="dashboard-infos">
@@ -74,109 +92,118 @@
                     </header>
 
                     <div class="dashboard-data-grid">
-                        <div class="grid-element" id="feels-like">
-                            <img class="element-icon" src="/assets/thermometer-simple-bold.svg" alt="" />
+                        <div class="grid-element left-area" id="feels-like" style="grid-area: left">
+                            <img
+                                class="element-icon"
+                                src="/assets/thermometer-simple-bold.svg"
+                                alt="Ícone de Termômetro" />
 
                             <div class="element-titles">
                                 <h3 class="name">Sensação Térmica</h3>
-                                <h1 class="data">19 °C</h1>
+                                <h2 class="data">- °C</h2>
                             </div>
 
                             <div class="expanded-element">
-                                <p class="expanded-info" id="min-temp">Mínimas de <strong>12 °C</strong></p>
-                                <p class="expanded-info" id="max-temp">Máximas de <strong>34 °C</strong></p>
+                                <p class="expanded-info" id="min-temp">Mínimas de <strong>- °C</strong></p>
+                                <p class="expanded-info" id="max-temp">Máximas de <strong>- °C</strong></p>
                             </div>
                         </div>
-
-                        <div class="grid-element" id="rain-probability">
-                            <img class="element-icon" src="/assets/drop-fill.svg" alt="" />
+                        <div class="grid-element left-area" id="rain-probability" style="grid-area: left1">
+                            <img class="element-icon" src="/assets/drop-fill.svg" alt="Ícone de gota d'água" />
                             <div class="element-titles">
                                 <h3 class="name">Probabilidade de Chuva</h3>
-                                <h1 class="data">21 %</h1>
+                                <h2 class="data">- %</h2>
                             </div>
                             <div class="expanded-element">
-                                <p class="expanded-info" id="raining-status">
-                                    Agora <strong>não está chovendo</strong>
-                                </p>
+                                <p class="expanded-info" id="raining-status">Agora <strong>- chovendo</strong></p>
                                 <small class="expanded-small-info"
                                     >Esta é uma aproximação não oficial baseada nos dados atuais obtidos</small
                                 >
                             </div>
                         </div>
-                        <div class="grid-element" id="clouds-percent">
-                            <img class="element-icon" src="/assets/cloud-fill.svg" alt="" />
+                        <div class="grid-element left-area" id="clouds-percent" style="grid-area: left2">
+                            <img class="element-icon" src="/assets/cloud-fill.svg" alt="Ícone de nuvem" />
                             <div class="element-titles">
                                 <h3 class="name">Preenchimento de Nuvens</h3>
-                                <h1 class="data">68 %</h1>
+                                <h2 class="data">- %</h2>
                             </div>
                             <div class="expanded-element">
-                                <p class="expanded-info" id="weather-status">Agora <strong>está nublado</strong></p>
+                                <p class="expanded-info" id="weather-status">Agora <strong>- nublado</strong></p>
                             </div>
                         </div>
-                        <div class="grid-element" id="atmospheric-pressure">
-                            <img class="element-icon" src="/assets/gauge-fill.svg" alt="" />
+                        <div class="grid-element left-area" id="atmospheric-pressure" style="grid-area: left3">
+                            <img class="element-icon" src="/assets/gauge-fill.svg" alt="Ícone de medidor de pressão" />
                             <div class="element-titles">
                                 <h3 class="name">Pressão Atmosférica</h3>
-                                <h1 class="data">201 hPa</h1>
+                                <h2 class="data">- hPa</h2>
                             </div>
                             <div class="expanded-element">
                                 <p class="expanded-info" id="atmospheric-pressure-status">
                                     A pressão atmosférica
-                                    <strong>está normal</strong>
+                                    <strong>-</strong>
                                 </p>
                             </div>
                         </div>
-                        <div class="grid-element" id="wind-speed">
-                            <img class="element-icon" src="/assets/wind-bold.svg" alt="" />
+                        <div class="grid-element right-area" id="wind-speed" style="grid-area: right">
+                            <img class="element-icon" src="/assets/wind-bold.svg" alt="Ícone de vento" />
                             <div class="element-titles">
                                 <h3 class="name">Velocidade do Vento</h3>
-                                <h1 class="data">5 km/h</h1>
+                                <h2 class="data">- km/h</h2>
                             </div>
                         </div>
-                        <div class="grid-element" id="humidity">
-                            <img class="element-icon" src="/assets/cloud-fog-bold.svg" alt="" />
+                        <div class="grid-element right-area" id="humidity" style="grid-area: right1">
+                            <img
+                                class="element-icon"
+                                src="/assets/cloud-fog-bold.svg"
+                                alt="Ícone representando humidade" />
                             <div class="element-titles">
                                 <h3 class="name">Umidade do Ar</h3>
-                                <h1 class="data">85 %</h1>
+                                <h2 class="data">- %</h2>
                             </div>
                         </div>
-                        <div class="grid-element" id="wind-direction">
-                            <img class="element-icon" src="/assets/arrow-down-bold.svg" alt="" />
+                        <div class="grid-element right-area" id="wind-direction" style="grid-area: right2">
+                            <img
+                                class="element-icon"
+                                src="/assets/arrow-down-bold.svg"
+                                alt="Ícone de seta apotando para a direção atual do vento" />
                             <div class="element-titles">
                                 <h3 class="name">Direção do Vento</h3>
-                                <h1 class="data">90 °</h1>
+                                <h2 class="data">- °</h2>
                             </div>
                         </div>
-                        <div class="grid-element" id="wind-gust">
-                            <img class="element-icon" src="/assets/tornado-bold.svg" alt="" />
+                        <div class="grid-element right-area" id="wind-gust" style="grid-area: right3">
+                            <img
+                                class="element-icon"
+                                src="/assets/tornado-bold.svg"
+                                alt="Ícone de tornado representando as rajadas de vento" />
                             <div class="element-titles">
                                 <h3 class="name">Rajadas de Vento</h3>
-                                <h1 class="data">10 km/h</h1>
+                                <h2 class="data">- km/h</h2>
                             </div>
                             <div class="expanded-element">
                                 <p class="expanded-info" id="wind-gust-status">
                                     As rajadas de vento
-                                    <strong>estão frequentes</strong>
+                                    <strong>-</strong>
                                 </p>
                             </div>
                         </div>
-                        <div class="grid-element" id="snow-probability">
-                            <img class="element-icon" src="/assets/snowflake-bold.svg" alt="" />
+                        <div class="grid-element right-area" id="snow-probability" style="grid-area: right4">
+                            <img class="element-icon" src="/assets/snowflake-bold.svg" alt="Ícone de neve" />
                             <div class="element-titles">
                                 <h3 class="name">Neve ou Gelo</h3>
-                                <h1 class="data">0 %</h1>
+                                <h2 class="data">- %</h2>
                             </div>
                             <div class="expanded-element">
                                 <p class="expanded-info" id="snow-probability-status">
-                                    <strong>Não ha previsão</strong> de neve ou gelo
+                                    <strong>- previsão</strong> de neve ou gelo
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="design-div"></div>
-                    <p id="last-search-time">última atualização ha alguns instantes atrás</p>
-                    <strong><p id="search-cord">Latitude: 0.1215 | Longitude: 0.1215</p></strong>
+                    <p id="last-search-time">última atualização há alguns instantes atrás</p>
+                    <strong><p id="search-cord">Latitude: - | Longitude: -</p></strong>
                 </article>
             </section>
         </main>
