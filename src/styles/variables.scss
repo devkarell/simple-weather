@@ -1,21 +1,28 @@
-$dark-background: #12151c;
-$snow-title: #edf0f8;
+// document colors
+$page-bg-darkblue-500: #12151c;
+$page-bg-darkblue-400: #1e2330;
+$containers-bg-neutralblue: #202537;
+$containers-bg-lightblue: #353e5d;
 
-$main-stroke-color: #4c5670;
-$small-letters-size: 0.9rem;
+// element colors
+$buttons-bg-darkblue: #313352;
+$buttons-hover-darkblue: #2e2f4b;
 
-// home
-$animated-label-size: 2.5rem;
-$animated-label-hidden-color: #585b60;
-$input-field-bg: #303144;
-$input-field-text-color: #686f85;
-$select-field-bg: #232438;
-$select-field-text-color: #96a0c1;
-$search-button-bg: #313352;
-$search-button-title-color: #d1ddff;
+// all title colors
+$primary-snow-500: #edf0f8;
 
-// design divisory
-$design-div-color: #303144;
+$secondary-darkblue-500: #12151c;
+$secondary-darkblue-400: #686f85;
+$secondary-darkblue-300: #96a0c1;
+$secondary-darkblue-200: #adb8dd;
 
-$invalid-title-color: #ff6668;
-$valid-title-color: #45e29e;
+$invalid-title-red: #ff6668;
+$valid-title-green: #45e29e;
+
+// element sizes
+$hover-outline-size: 2px;
+$default-border-radius: 10px;
+
+// templates
+$outline-template: 0px solid #576381;
+$border-template: 1px solid #4c5670;

@@ -13,6 +13,7 @@
         text-align: start;
         text-wrap: nowrap;
         margin-bottom: 17px;
+        color: vars.$primary-snow-500;
     }
 
     .animated-labels {
@@ -25,14 +26,14 @@
 
         .animated-label {
             font-weight: 400;
-            font-size: vars.$animated-label-size;
-            color: vars.$snow-title;
+            font-size: 2.5rem;
             text-align: start;
             text-wrap: nowrap;
+            color: vars.$primary-snow-500;
         }
 
         .animated-label__unselected {
-            color: vars.$animated-label-hidden-color;
+            color: vars.$secondary-darkblue-400;
         }
     }
 

@@ -23,9 +23,9 @@
         gap: 15px;
         margin-bottom: 12px;
 
-        background-color: vars.$input-field-bg;
-        border: 1px solid vars.$main-stroke-color;
-        border-radius: 10px;
+        background-color: vars.$containers-bg-neutralblue;
+        border: vars.$border-template;
+        border-radius: vars.$default-border-radius;
 
         #city-input {
             width: 100%;
@@ -34,10 +34,10 @@
             margin-left: 13px;
 
             background: none;
-            color: vars.$snow-title;
+            color: vars.$primary-snow-500;
 
             &::placeholder {
-                color: vars.$input-field-text-color;
+                color: vars.$secondary-darkblue-400;
                 font-weight: 300;
                 font-size: 1.8rem;
             }
@@ -51,11 +51,11 @@
     }
 
     .invalid {
-        color: vars.$invalid-title-color;
+        color: vars.$invalid-title-red;
     }
 
     .valid {
-        color: vars.$valid-title-color;
+        color: vars.$valid-title-green;
     }
 
     #invalid-city-label {
@@ -72,19 +72,19 @@
         font-weight: 300;
         font-size: 1.8rem;
 
-        border: 1px solid vars.$main-stroke-color;
-        outline: 0px solid vars.$main-stroke-color;
-        border-radius: 10px;
-        background-color: vars.$search-button-bg;
-        color: #d1ddff;
+        color: vars.$secondary-darkblue-300;
+        border: vars.$border-template;
+        outline: vars.$outline-template;
+        border-radius: vars.$default-border-radius;
+        background-color: vars.$buttons-bg-darkblue;
         transition: background-color, outline-width, 0.1s;
 
         &:hover {
-            background-color: #2e2f4b;
+            background-color: vars.$buttons-hover-darkblue;
         }
 
         &:active {
-            outline-width: 3px;
+            outline-width: vars.$hover-outline-size;
         }
     }
 }

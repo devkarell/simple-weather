@@ -8,10 +8,10 @@
     width: 84rem;
     padding: 29px 27px;
 
-    background-color: #202537;
-    border-radius: 25px;
+    background-color: vars.$containers-bg-neutralblue;
+    border-radius: calc(vars.$default-border-radius * 2);
 
-    .dashboard-title-container {
+    .dashboard-header {
         display: flex;
         flex-direction: row nowrap;
         justify-content: space-between;
@@ -22,29 +22,29 @@
         .dashboard-title {
             font-size: 1.9rem;
             font-weight: 700;
-            color: #686f85;
+            color: vars.$secondary-darkblue-400;
         }
 
         #expand-dashboard {
             width: 14.3rem;
             height: 3.2rem;
             cursor: pointer;
-
-            background-color: vars.$search-button-bg;
-            border: 1px solid vars.$main-stroke-color;
-            outline: 0px solid vars.$main-stroke-color;
-            border-radius: 8px;
-            color: vars.$snow-title;
             font-size: 1.6rem;
             font-weight: 600;
+
+            background-color: vars.$buttons-bg-darkblue;
+            border: vars.$border-template;
+            outline: vars.$outline-template;
+            border-radius: vars.$default-border-radius;
+            color: vars.$secondary-darkblue-300;
             transition: background-color, outline-width, 0.1s;
 
             &:hover {
-                background-color: #2e2f4b;
+                background-color: vars.$buttons-hover-darkblue;
             }
 
             &:active {
-                outline-width: 3px;
+                outline-width: vars.$hover-outline-size;
             }
         }
     }
@@ -87,14 +87,14 @@
                 .name {
                     font-size: 2.1rem;
                     font-weight: 400;
-                    color: #a0abce;
                     text-wrap: nowrap;
+                    color: vars.$secondary-darkblue-300;
                 }
 
                 .data {
                     font-size: 3.5rem;
                     font-weight: 700;
-                    color: #d1d5df;
+                    color: vars.$primary-snow-500;
                 }
             }
 
@@ -109,45 +109,36 @@
                 .expanded-info {
                     font-size: 1.7rem;
                     font-weight: 400;
-                    color: #a0abce;
                     margin-bottom: 2px;
-
-                    strong {
-                        color: #a0abce;
-                        font-size: 1.7rem;
-                        font-weight: 700;
-                    }
+                    color: vars.$secondary-darkblue-300;
                 }
 
                 .expanded-small-info {
                     font-size: 1.5rem;
                     font-weight: 300;
-                    color: #a0abce;
                     margin-top: 8px;
+                    color: vars.$secondary-darkblue-300;
                 }
             }
         }
     }
 
     .design-div {
-        width: 100%;
+        width: 70%;
         height: 2px;
         margin-bottom: 26px;
+        background-color: vars.$containers-bg-lightblue;
     }
 
     #last-search-time {
         font-size: 1.7rem;
         font-weight: 400;
-        color: #a0abce;
         margin-bottom: 12px;
+        color: vars.$secondary-darkblue-300;
     }
 
-    #search-cord-strong {
-        font-weight: 600;
-
-        #search-cord {
-            font-size: 1.7rem;
-            color: #a0abce;
-        }
+    #search-cord {
+        font-size: 1.7rem;
+        color: vars.$secondary-darkblue-300;
     }
 }

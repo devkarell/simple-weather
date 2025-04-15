@@ -13,21 +13,23 @@ footer {
     .footer-info {
         font-size: 1.5rem;
         font-weight: 300;
-        color: #686f85;
+        color: vars.$secondary-darkblue-400;
 
         .github-link {
-            color: #686f85;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: vars.$secondary-darkblue-400;
 
             &:visited {
-                color: #686f85;
-            }
-
-            &:focus {
-                color: vars.$snow-title;
+                color: vars.$secondary-darkblue-400;
             }
 
             &:hover {
-                font-weight: 600;
+                color: vars.$secondary-darkblue-300;
+            }
+
+            &:active {
+                color: vars.$secondary-darkblue-200;
             }
         }
     }
