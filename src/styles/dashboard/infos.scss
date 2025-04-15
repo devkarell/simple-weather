@@ -51,7 +51,14 @@
 
     .dashboard-data-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            'left right'
+            'left1 right1'
+            'left2 right2'
+            'left3 right3'
+            'left4 right4';
+
         width: 100%;
         gap: 52px;
         margin-bottom: 47px;
