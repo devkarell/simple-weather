@@ -13,6 +13,7 @@
 
 // utils
 @use './variables.scss' as vars;
+@use '../../node_modules/select2/dist/css/select2.min.css';
 @forward './variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
@@ -40,6 +41,8 @@ body {
     align-items: center;
     width: 100%;
     min-height: 100vh;
+    gap: 100px;
+
     scroll-behavior: smooth;
     background-color: vars.$page-bg-darkblue-500;
 }
@@ -49,8 +52,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20%;
-    scroll-behavior: smooth;
+    gap: 50vh;
+    padding-top: 12.5%;
 }
 
 strong {

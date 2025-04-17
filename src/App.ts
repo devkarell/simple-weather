@@ -1,6 +1,13 @@
 import './styles/global.scss';
 import './modules/dashboardHandler';
-import './modules/regionValidator';
-import * as filler from './modules/provincesFiller';
+import { isProvinceValid } from './modules/regionValidator';
+import './modules/provincesFiller';
 
-filler.fill();
+$('#province-input').select2({
+    placeholder: 'Estado',
+    allowClear: true,
+    language: 'pt-BR',
+    maximumInputLength: 23,
+});
+
+$('#province-input').on('select2:select', isProvinceValid);

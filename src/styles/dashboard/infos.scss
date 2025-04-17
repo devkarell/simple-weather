@@ -10,6 +10,7 @@
 
     background-color: vars.$containers-bg-neutralblue;
     border-radius: calc(vars.$default-border-radius * 2);
+    transition: all 1s ease;
 
     .dashboard-header {
         display: flex;
@@ -50,11 +51,13 @@
     }
 
     .dashboard-data-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
         width: 100%;
-        gap: 52px;
-        margin-bottom: 47px;
+        height: 100%;
 
         .grid-element {
             display: flex;
@@ -63,7 +66,7 @@
             align-items: center;
             position: relative;
             gap: 6px;
-            min-height: 7.5rem;
+            width: calc(50% - 44px);
 
             .element-icon {
                 width: 40px;
@@ -124,18 +127,13 @@
     }
 
     .expanded {
-        grid-template-areas:
-            'left right'
-            'left1 right1'
-            'left2 right2'
-            'left3 right3'
-            'left4 right4';
+        margin-bottom: 47px;
+        gap: 44px;
     }
 
     .compacted {
-        grid-template-areas:
-            'left right'
-            'left1 right1';
+        margin-bottom: 34px;
+        gap: 52px;
     }
 
     .design-div {
