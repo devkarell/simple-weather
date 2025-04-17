@@ -1,26 +1,20 @@
-import * as openWeatherTypes from '../types/openWeatherTypes.ts';
-// import * as weatherFormatter from './weatherFormatter.ts'
+// TODO! New feature: Request user geolocation and fetch weather data based on that
 
-const invalidCityAdvertise = <HTMLParagraphElement>document.getElementById('invalid-city-label');
+import { WeatherDataResponse, RegionDataResponse, Geocode } from '../types/openWeatherTypes.ts';
 
 const FETCH_TIMEOUT = 5000; // five seconds (in ms)
 
-async function getRegionGeocode(cityName: string, provinceAcronym: string): Promise<openWeatherTypes.Geocode> {
+async function fetchWeatherData(requestURL: string): Promise<WeatherDataResponse | RegionDataResponse | any> {
+    if (!requestURL || typeof requestURL !== 'string') return;
+
     const abortController = new AbortController();
     const fetchTimoutId = setTimeout(() => abortController.abort(), FETCH_TIMEOUT);
 
-    const encodedCityName = encodeURIComponent(cityName);
-    const requestURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym.toUpperCase()},BR&limit=1&appid=${APP_ID}`;
-
     try {
-        const data = await fetch(requestURL, { signal: abortController.signal }).then((data) => data.json());
+        const response = await fetch(requestURL, { signal: abortController.signal });
+        if (!response.ok) return;
 
-        if (data && data[0]) {
-            return { lat: data[0].lat, lon: data[0].lon };
-        } else {
-            invalidCityAdvertise.textContent = '..Algo saiu mal';
-            invalidCityAdvertise.style.display = 'inline';
-        }
+        return await response.json();
     } catch (err) {
         console.warn(err);
     } finally {
@@ -28,27 +22,41 @@ async function getRegionGeocode(cityName: string, provinceAcronym: string): Prom
     }
 }
 
-export async function searchWeatherByRegion(cityName: string, provinceAcronym: string): Promise<boolean | undefined> {
-    const regionGeocode = await getRegionGeocode(cityName, provinceAcronym);
-    console.log(regionGeocode, typeof regionGeocode);
-    if (!regionGeocode) return;
+function getWeatherEndpoint(geocode: Geocode): string | undefined {
+    if (!geocode || typeof geocode !== 'object') return;
+    if (!geocode.lat || !geocode.lon) return;
+    if (typeof geocode.lat !== 'number' || typeof geocode.lon !== 'number') return;
 
-    const abortController = new AbortController();
-    const fetchTimoutId = setTimeout(() => abortController.abort(), FETCH_TIMEOUT);
+    const endpointURL = `https://api.openweathermap.org/data/2.5/weather?lat=${geocode.lat}&lon=${geocode.lon}&appid=${APP_ID}&lang=pt_br`;
+    return endpointURL;
+}
 
-    const requestURL = `https://api.openweathermap.org/data/2.5/weather?lat=${regionGeocode.lat}&lon=${regionGeocode.lon}&appid=${APP_ID}&lang=pt_br`;
-    let data;
+function getRegionDataEndpoint(cityName: string, provinceAcronym: string): string | undefined {
+    if (!cityName || !provinceAcronym) return;
+    if (typeof cityName !== 'string' || typeof provinceAcronym !== 'string') return;
 
-    try {
-        data = await fetch(requestURL, { signal: abortController.signal }).then((data) => data.json());
+    const encodedCityName = encodeURIComponent(cityName);
+    const endpointURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym.toUpperCase()},BR&limit=1&appid=${APP_ID}`;
+    return endpointURL;
+}
 
-        //weatherFormatter.show(data, provinceAcronym.toUpperCase());
-        console.log(data);
-    } catch (err) {
-        console.warn(err);
-    } finally {
-        clearTimeout(fetchTimoutId);
-    }
+export async function searchWeatherByRegion(cityName: string, provinceAcronym: string): Promise<WeatherDataResponse | undefined> {
+    if (!APP_ID || APP_ID.length < 32) return;
 
-    return data && true;
+    const regionDataEndpoint = getRegionDataEndpoint(cityName, provinceAcronym);
+    if (!regionDataEndpoint) return;
+
+    const regionData = <RegionDataResponse>await fetchWeatherData(regionDataEndpoint);
+    if (!regionData) return;
+
+    const geocodeObject: Geocode = {
+        lat: regionData[0].lat,
+        lon: regionData[0].lon,
+    };
+
+    const weatherEndpoint = getWeatherEndpoint(geocodeObject);
+    if (!weatherEndpoint) return;
+
+    const weatherForecastData = <WeatherDataResponse>await fetchWeatherData(weatherEndpoint);
+    return weatherForecastData;
 }
