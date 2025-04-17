@@ -14,7 +14,12 @@ async function fetchWeatherData(requestURL: string): Promise<WeatherDataResponse
         const response = await fetch(requestURL, { signal: abortController.signal });
         if (!response.ok) return;
 
-        return await response.json();
+        const data = await response.json();
+        if (!data) return;
+        if (Array.isArray(data) && data.length === 0) return;
+        if ((typeof data === 'object' && !data.name) || data.name === '') return;
+
+        return data;
     } catch (err) {
         console.warn(err);
     } finally {
