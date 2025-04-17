@@ -7,46 +7,67 @@ const cityInput = <HTMLInputElement>document.getElementById('city-input');
 const provinceInput = <HTMLInputElement>document.getElementById('province-input');
 const dashboard = <HTMLDivElement>document.getElementById('dashboard');
 
-const cityRegexSearch = /[^A-Za-z]/g;
-const cityRegexFormatter = /[^A-Za-z\s]/g;
+// ui advertises
+const invalidCityAdvertise = <HTMLParagraphElement>document.getElementById('invalid-city-label');
+const invalidFormatAdvertise = <HTMLParagraphElement>document.getElementById('format-label');
+const invalidProvinceAdvertise = <HTMLParagraphElement>document.getElementById('province-label');
+const minCharactersAdvertise = <HTMLParagraphElement>document.getElementById('minimun-characters-label');
 
-function formatCityInput(): void {
-    let value = cityInput.value;
-    if (value === '') return;
+const cityRegexSearch = /^[\p{L}\s]+$/u;
 
-    cityInput.value = value.replace(cityRegexFormatter, '');
+function isCityValid(): boolean {
+    const value = cityInput.value;
+    const isValidChars = value.trim().length > 3;
+    const isValidFormat = cityRegexSearch.test(value);
+
+    // invalid city advertise
+    invalidCityAdvertise.textContent = 'Hmm.. Este nome não parece familiar';
+    invalidCityAdvertise.style.display = isValidChars && isValidFormat ? 'none' : 'inline';
+
+    // invalid min chars advertise
+    minCharactersAdvertise.classList.remove(isValidChars ? 'invalid' : 'valid');
+    minCharactersAdvertise.classList.add(isValidChars ? 'valid' : 'invalid');
+
+    // invalid format advertise
+    invalidFormatAdvertise.classList.remove(isValidFormat ? 'invalid' : 'valid');
+    invalidFormatAdvertise.classList.add(isValidFormat ? 'valid' : 'invalid');
+
+    return isValidChars && isValidFormat;
 }
 
-function isCityInputValidCharacters(): boolean | undefined {
-    if (cityInput.value === '') return;
+export function isProvinceValid(): boolean {
+    const isProvinceValid = <boolean>provinces.isValidProvinceByAcronym(provinceInput.value);
+    invalidProvinceAdvertise.classList.remove(isProvinceValid ? 'invalid' : 'valid');
+    invalidProvinceAdvertise.classList.add(isProvinceValid ? 'valid' : 'invalid');
 
-    let cleanedValue = cityInput.value.replace(cityRegexSearch, '');
-    return cleanedValue.length >= 3;
+    return isProvinceValid;
 }
 
-function isUserRegionValid(): boolean | undefined {
-    if (!isCityInputValidCharacters()) return;
-    return provinceInput.value !== 'none' && provinces.isValidProvinceByAcronym(provinceInput.value);
-}
+async function submitRegion(): Promise<void> {
+    if (!isCityValid() || !isProvinceValid()) return;
+    submitFormBtn.setAttribute('disabled', '');
 
-function submitRegion() {
-    if (!isUserRegionValid()) return;
-    return openWeather.searchWeatherByRegion(cityInput.value, provinceInput.value);
+    const sucessSubmit = await openWeather.searchWeatherByRegion(cityInput.value, provinceInput.value);
+
+    if (sucessSubmit) {
+        dashboard.style.display = 'flex';
+        dashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        cityInput.value = '';
+        submitFormBtn.removeAttribute('disabled');
+
+        // resets the select2 element to default value
+        $('#province-input').val('').trigger('change');
+
+        // update advertise titles
+        isCityValid();
+        isProvinceValid();
+    }
 }
 
 regionForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    submitFormBtn.setAttribute('disabled', '');
-
-    const sucessSumbit = submitRegion();
-
-    if (sucessSumbit) {
-        dashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    cityInput.value = '';
-    provinceInput.value = '';
-    submitFormBtn.removeAttribute('disabled');
+    submitRegion();
 });
 
-cityInput.addEventListener('input', formatCityInput);
+cityInput.addEventListener('input', isCityValid);

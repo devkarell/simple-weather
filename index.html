@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="node_modules/select2/dist/css/select2.min.css" />
 
         <!-- Seo -->
         <title>Simple Weather - UI/UX | Previsão do Tempo moderna com Dashboards</title>
@@ -53,20 +52,25 @@
                             required
                             autofocus />
                         <select name="province" class="region-input" id="province-input">
-                            <option value="" id="province-template">Estado</option>
+                            <option value=""></option>
                         </select>
                     </div>
-                    <small class="advertise-title invalid" id="invalid-city-label"
+                    <small class="advertise-title invalid" id="invalid-city-label" style="display: none"
                         >Hmm.. Este nome não parece familiar</small
                     >
-                    <small class="advertise-title valid" id="minimun-characters-label">• Mínimo de 3 caracteres</small>
+                    <small class="advertise-title invalid" id="minimun-characters-label"
+                        >• Mínimo de 3 caracteres</small
+                    >
                     <small class="advertise-title invalid" id="format-label">• Letras e espaços apenas</small>
+                    <small class="advertise-title invalid" id="province-label"
+                        >• O Estado/Região deve ser escolhido</small
+                    >
                     <button type="submit" id="submit-user-region">Buscar</button>
                 </form>
                 <img class="bg-logo" src="/assets/cloud-moon-fill-bg.svg" alt="" />
             </section>
 
-            <section class="dashboard" id="dashboard">
+            <section class="dashboard" id="dashboard" style="display: none">
                 <h2 class="title">Encontramos alguns resultados:</h2>
                 <div class="main-results">
                     <div class="infos">
@@ -85,14 +89,14 @@
                         alt="Ícone demonstrativo do clima atual que é: indefinido" />
                 </div>
 
-                <article class="dashboard-infos" id="dashboard-infos">
+                <article class="dashboard-infos dashboard-infos-compact" id="dashboard-infos">
                     <header class="dashboard-header">
                         <h2 class="dashboard-title">Condições do Clima</h2>
                         <button id="expand-dashboard">ver menos</button>
                     </header>
 
-                    <div class="dashboard-data-grid compact" id="dashboard-grid">
-                        <div class="grid-element" id="feels-like" style="grid-area: left">
+                    <div class="dashboard-data-grid compacted" id="dashboard-grid">
+                        <div class="grid-element" id="feels-like" style="order: 1">
                             <img
                                 class="element-icon"
                                 src="/assets/thermometer-simple-bold.svg"
@@ -108,7 +112,7 @@
                                 <p class="expanded-info" id="max-temp">Máximas de <strong>- °C</strong></p>
                             </div>
                         </div>
-                        <div class="grid-element" id="rain-probability" style="grid-area: left1">
+                        <div class="grid-element" id="rain-probability" style="order: 3">
                             <img class="element-icon" src="/assets/drop-fill.svg" alt="Ícone de gota d'água" />
                             <div class="element-titles">
                                 <h3 class="name">Probabilidade de Chuva</h3>
@@ -121,14 +125,14 @@
                                 >
                             </div>
                         </div>
-                        <div class="grid-element" id="wind-speed" style="grid-area: right">
+                        <div class="grid-element" id="wind-speed" style="order: 2">
                             <img class="element-icon" src="/assets/wind-bold.svg" alt="Ícone de vento" />
                             <div class="element-titles">
                                 <h3 class="name">Velocidade do Vento</h3>
                                 <h2 class="data">- km/h</h2>
                             </div>
                         </div>
-                        <div class="grid-element" id="humidity" style="grid-area: right1">
+                        <div class="grid-element" id="humidity" style="order: 4">
                             <img
                                 class="element-icon"
                                 src="/assets/cloud-fog-bold.svg"
@@ -138,7 +142,7 @@
                                 <h2 class="data">- %</h2>
                             </div>
                         </div>
-                        <div class="grid-element hidden-element" id="clouds-percent" style="grid-area: left2">
+                        <div class="grid-element hidden-element" id="clouds-percent" style="order: 5">
                             <img class="element-icon" src="/assets/cloud-fill.svg" alt="Ícone de nuvem" />
                             <div class="element-titles">
                                 <h3 class="name">Preenchimento de Nuvens</h3>
@@ -148,7 +152,7 @@
                                 <p class="expanded-info" id="weather-status">Agora <strong>- nublado</strong></p>
                             </div>
                         </div>
-                        <div class="grid-element hidden-element" id="atmospheric-pressure" style="grid-area: left3">
+                        <div class="grid-element hidden-element" id="atmospheric-pressure" style="order: 7">
                             <img class="element-icon" src="/assets/gauge-fill.svg" alt="Ícone de medidor de pressão" />
                             <div class="element-titles">
                                 <h3 class="name">Pressão Atmosférica</h3>
@@ -161,7 +165,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="grid-element hidden-element" id="wind-direction" style="grid-area: right2">
+                        <div class="grid-element hidden-element" id="wind-direction" style="order: 6">
                             <img
                                 class="element-icon"
                                 src="/assets/arrow-down-bold.svg"
@@ -171,7 +175,7 @@
                                 <h2 class="data">- °</h2>
                             </div>
                         </div>
-                        <div class="grid-element hidden-element" id="wind-gust" style="grid-area: right3">
+                        <div class="grid-element hidden-element" id="wind-gust" style="order: 8">
                             <img
                                 class="element-icon"
                                 src="/assets/tornado-bold.svg"
@@ -187,7 +191,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="grid-element hidden-element" id="snow-probability" style="grid-area: right4">
+                        <div class="grid-element hidden-element" id="snow-probability" style="order: 9">
                             <img class="element-icon" src="/assets/snowflake-bold.svg" alt="Ícone de neve" />
                             <div class="element-titles">
                                 <h3 class="name">Neve ou Gelo</h3>
@@ -224,13 +228,9 @@
             </p>
         </footer>
 
-        <script type="module" src="./src/App.ts"></script>
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/select2/dist/js/select2.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#province-input').select2();
-            });
-        </script>
+        <script src="node_modules/select2/dist/js/i18n/pt-BR.js"></script>
+        <script type="module" src="./src/App.ts"></script>
     </body>
 </html>

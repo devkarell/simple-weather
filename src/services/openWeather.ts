@@ -1,8 +1,9 @@
 import * as openWeatherTypes from '../types/openWeatherTypes.ts';
 // import * as weatherFormatter from './weatherFormatter.ts'
 
+const invalidCityAdvertise = <HTMLParagraphElement>document.getElementById('invalid-city-label');
+
 const FETCH_TIMEOUT = 5000; // five seconds (in ms)
-const APP_ID = '';
 
 async function getRegionGeocode(cityName: string, provinceAcronym: string): Promise<openWeatherTypes.Geocode> {
     const abortController = new AbortController();
@@ -14,10 +15,12 @@ async function getRegionGeocode(cityName: string, provinceAcronym: string): Prom
     try {
         const data = await fetch(requestURL, { signal: abortController.signal }).then((data) => data.json());
 
-        return {
-            lat: data[0].lat,
-            lon: data[0].lon,
-        };
+        if (data && data[0]) {
+            return { lat: data[0].lat, lon: data[0].lon };
+        } else {
+            invalidCityAdvertise.textContent = '..Algo saiu mal';
+            invalidCityAdvertise.style.display = 'inline';
+        }
     } catch (err) {
         console.warn(err);
     } finally {
@@ -27,6 +30,7 @@ async function getRegionGeocode(cityName: string, provinceAcronym: string): Prom
 
 export async function searchWeatherByRegion(cityName: string, provinceAcronym: string): Promise<boolean | undefined> {
     const regionGeocode = await getRegionGeocode(cityName, provinceAcronym);
+    console.log(regionGeocode, typeof regionGeocode);
     if (!regionGeocode) return;
 
     const abortController = new AbortController();
