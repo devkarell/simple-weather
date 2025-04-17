@@ -47,6 +47,13 @@ function fill(): void {
         newProvince.innerHTML = province.name;
         provinceParent.appendChild(newProvince);
     }
+
+    $('#province-input').select2({
+        placeholder: 'Estado',
+        allowClear: true,
+        language: 'pt-BR',
+        maximumInputLength: 23,
+    });
 }
 
 fill();

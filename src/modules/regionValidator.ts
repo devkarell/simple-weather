@@ -1,5 +1,6 @@
 import * as provinces from './provincesFiller.ts';
 import * as openWeather from '../services/openWeather.ts';
+import { showResults } from './weatherFormatter.ts';
 
 const regionForm = <HTMLFormElement>document.getElementById('search-form');
 const submitFormBtn = <HTMLButtonElement>document.getElementById('submit-user-region');
@@ -48,21 +49,21 @@ async function submitRegion(): Promise<void> {
     submitFormBtn.setAttribute('disabled', '');
 
     const sucessSubmit = await openWeather.searchWeatherByRegion(cityInput.value, provinceInput.value);
+    if (!sucessSubmit || !sucessSubmit.weather) return;
 
-    if (sucessSubmit) {
-        dashboard.style.display = 'flex';
-        dashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showResults(sucessSubmit);
+    dashboard.style.display = 'flex';
+    dashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        cityInput.value = '';
-        submitFormBtn.removeAttribute('disabled');
+    // resets the select2 & city name to default value
+    $('#province-input').val('').trigger('change');
+    cityInput.value = '';
 
-        // resets the select2 element to default value
-        $('#province-input').val('').trigger('change');
+    // update advertise titles
+    isCityValid();
+    isProvinceValid();
 
-        // update advertise titles
-        isCityValid();
-        isProvinceValid();
-    }
+    submitFormBtn.removeAttribute('disabled');
 }
 
 regionForm.addEventListener('submit', (e) => {
@@ -71,3 +72,4 @@ regionForm.addEventListener('submit', (e) => {
 });
 
 cityInput.addEventListener('input', isCityValid);
+$('#province-input').on('select2:select', isProvinceValid);
