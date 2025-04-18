@@ -28,6 +28,45 @@ const provincesList = [
     { acronym: 'TO', name: 'Tocantins' },
 ];
 
+const timeZoneMap: Record<string, string> = {
+    AC: 'America/Rio_Branco',
+    AM: 'America/Manaus',
+    MT: 'America/Cuiaba',
+    MS: 'America/Campo_Grande',
+    RO: 'America/Porto_Velho',
+    RR: 'America/Boa_Vista',
+    AP: 'America/Belem',
+    PA: 'America/Belem',
+    MA: 'America/Fortaleza',
+    PI: 'America/Fortaleza',
+    CE: 'America/Fortaleza',
+    RN: 'America/Fortaleza',
+    PB: 'America/Fortaleza',
+    PE: 'America/Recife',
+    AL: 'America/Maceio',
+    SE: 'America/Aracaju',
+    BA: 'America/Bahia',
+    SP: 'America/Sao_Paulo',
+    RJ: 'America/Sao_Paulo',
+    MG: 'America/Sao_Paulo',
+    PR: 'America/Sao_Paulo',
+    SC: 'America/Sao_Paulo',
+    RS: 'America/Sao_Paulo',
+    DF: 'America/Sao_Paulo',
+    GO: 'America/Sao_Paulo',
+    TO: 'America/Araguaina',
+};
+
+export function getTimezoneByProvinceFullName(name: string): string | undefined {
+    if (typeof name !== 'string' || name === '') return;
+
+    for (const province of provincesList) {
+        if (province.name === name) {
+            return timeZoneMap[province.acronym];
+        }
+    }
+}
+
 export function isValidProvinceByAcronym(acronym: string): string | undefined {
     if (typeof acronym !== 'string' || acronym === '') return;
 
