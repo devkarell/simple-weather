@@ -1,5 +1,5 @@
 import * as provinces from './provincesFiller.ts';
-import * as openWeather from '../services/openWeather.ts';
+import { searchWeatherByRegion } from '../services/openWeather.ts';
 import { showResults } from './weatherFormatter.ts';
 
 const regionForm = <HTMLFormElement>document.getElementById('search-form');
@@ -37,7 +37,7 @@ function isCityValid(): boolean {
 }
 
 export function isProvinceValid(): boolean {
-    const isProvinceValid = <boolean>provinces.isValidProvinceByAcronym(provinceInput.value);
+    const isProvinceValid = !!provinces.isValidProvinceByAcronym(provinceInput.value);
     invalidProvinceAdvertise.classList.remove(isProvinceValid ? 'invalid' : 'valid');
     invalidProvinceAdvertise.classList.add(isProvinceValid ? 'valid' : 'invalid');
 
@@ -48,10 +48,10 @@ async function submitRegion(): Promise<void> {
     if (!isCityValid() || !isProvinceValid()) return;
     submitFormBtn.setAttribute('disabled', '');
 
-    const sucessSubmit = await openWeather.searchWeatherByRegion(cityInput.value, provinceInput.value);
-    if (!sucessSubmit || !sucessSubmit.weather) return;
+    const sucessSubmit = await searchWeatherByRegion(cityInput.value, provinceInput.value);
+    if (!sucessSubmit || !sucessSubmit.weather) return console.warn('No weather data found!');
 
-    showResults(sucessSubmit);
+    showResults(sucessSubmit, provinceInput.value);
     dashboard.style.display = 'flex';
     dashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 

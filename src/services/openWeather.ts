@@ -12,12 +12,11 @@ async function fetchWeatherData(requestURL: string): Promise<WeatherDataResponse
 
     try {
         const response = await fetch(requestURL, { signal: abortController.signal });
-        if (!response.ok) return;
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         const data = await response.json();
         if (!data) return;
         if (Array.isArray(data) && data.length === 0) return;
-        if ((typeof data === 'object' && !data.name) || data.name === '') return;
 
         return data;
     } catch (err) {
@@ -30,7 +29,7 @@ async function fetchWeatherData(requestURL: string): Promise<WeatherDataResponse
 function getWeatherEndpoint(geocode: Geocode): string | undefined {
     if (!geocode || typeof geocode !== 'object') return;
     if (!geocode.lat || !geocode.lon) return;
-    if (typeof geocode.lat !== 'number' || typeof geocode.lon !== 'number') return;
+    if (Number.isNaN(geocode.lat) || Number.isNaN(geocode.lon)) return;
 
     const endpointURL = `https://api.openweathermap.org/data/2.5/weather?lat=${geocode.lat}&lon=${geocode.lon}&appid=${APP_ID}&lang=pt_br`;
     return endpointURL;
@@ -41,12 +40,12 @@ function getRegionDataEndpoint(cityName: string, provinceAcronym: string): strin
     if (typeof cityName !== 'string' || typeof provinceAcronym !== 'string') return;
 
     const encodedCityName = encodeURIComponent(cityName);
-    const endpointURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym.toUpperCase()},BR&limit=1&appid=${APP_ID}`;
+    const endpointURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym},BR&limit=1&appid=${APP_ID}`;
     return endpointURL;
 }
 
 export async function searchWeatherByRegion(cityName: string, provinceAcronym: string): Promise<WeatherDataResponse | undefined> {
-    if (!APP_ID || APP_ID.length < 32) return;
+    if (!APP_ID) return;
 
     const regionDataEndpoint = getRegionDataEndpoint(cityName, provinceAcronym);
     if (!regionDataEndpoint) return;

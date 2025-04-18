@@ -28,12 +28,12 @@ const provincesList = [
     { acronym: 'TO', name: 'Tocantins' },
 ];
 
-export function isValidProvinceByAcronym(acronym: string): boolean | undefined {
+export function isValidProvinceByAcronym(acronym: string): string | undefined {
     if (typeof acronym !== 'string' || acronym === '') return;
 
     for (const province of provincesList) {
         if (province.acronym === acronym.toUpperCase()) {
-            return true;
+            return province.name;
         }
     }
 }
@@ -43,7 +43,7 @@ function fill(): void {
 
     for (const province of provincesList) {
         let newProvince = document.createElement('option');
-        newProvince.value = province.acronym.toLowerCase();
+        newProvince.value = province.acronym;
         newProvince.innerHTML = province.name;
         provinceParent.appendChild(newProvince);
     }
