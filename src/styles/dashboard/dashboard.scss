@@ -19,7 +19,7 @@
         justify-content: space-between;
         align-items: center;
         width: 84rem;
-        gap: 308px;
+        gap: 40px;
         margin-bottom: 25px;
 
         .infos {
@@ -56,8 +56,16 @@
         }
 
         .weather-large-icon {
-            width: 26.36rem;
-            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30rem;
+            height: 100%;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }

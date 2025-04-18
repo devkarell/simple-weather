@@ -10,9 +10,7 @@
             name="description"
             content="Um projeto pessoal de um app moderno que mostra a previsão do tempo da sua cidade, tudo é mostrado por meio de uma Dashboard completa com um design minimalista." />
         <meta property="og:title" content="Simple Weather - UI/UX" />
-        <meta
-            property="og:image"
-            content="https://github.com/devkarell/simple-weather/blob/main/public/assets/cloud-fill.svg" />
+        <meta property="og:image" content="https://github.com/devkarell/simple-weather/blob/main/public/assets/cloud-fill.svg" />
         <meta
             property="og:description"
             content="Previsão do Tempo moderna com Dashboards | Um projeto pessoal de um app moderno que mostra a previsão do tempo da sua cidade, tudo é mostrado por meio de uma Dashboard completa com um design minimalista." />
@@ -55,24 +53,18 @@
                             <option value=""></option>
                         </select>
                     </div>
-                    <small class="advertise-title invalid" id="invalid-city-label" style="display: none"
-                        >Hmm.. Este nome não parece familiar</small
-                    >
-                    <small class="advertise-title invalid" id="minimun-characters-label"
-                        >• Mínimo de 3 caracteres</small
-                    >
+                    <small class="advertise-title invalid" id="invalid-city-label" style="display: none">Hmm.. Este nome não parece familiar</small>
+                    <small class="advertise-title invalid" id="minimun-characters-label">• Mínimo de 3 caracteres</small>
                     <small class="advertise-title invalid" id="format-label">• Letras e espaços apenas</small>
-                    <small class="advertise-title invalid" id="province-label"
-                        >• O Estado/Região deve ser escolhido</small
-                    >
+                    <small class="advertise-title invalid" id="province-label">• O Estado/Região deve ser escolhido</small>
                     <button type="submit" id="submit-user-region">Buscar</button>
                 </form>
                 <img class="bg-logo" src="/assets/cloud-moon-fill-bg.svg" alt="" />
             </section>
 
-            <section class="dashboard" id="dashboard" style="display: none">
+            <section class="dashboard" id="dashboard">
                 <h2 class="title">Encontramos alguns resultados:</h2>
-                <div class="main-results">
+                <div class="main-results" id="main-results">
                     <div class="infos">
                         <div class="region-info">
                             <h2 class="city-name">undefined</h2>
@@ -83,10 +75,7 @@
                             <h2 class="temperature">- °C</h2>
                         </div>
                     </div>
-                    <img
-                        class="weather-large-icon"
-                        src="/assets/cloud-moon-fill.svg"
-                        alt="Ícone demonstrativo do clima atual que é: indefinido" />
+                    <aside class="weather-large-icon" id="weather-large-icon"></aside>
                 </div>
 
                 <article class="dashboard-infos dashboard-infos-compact" id="dashboard-infos">
@@ -97,10 +86,7 @@
 
                     <div class="dashboard-data-grid compacted" id="dashboard-grid">
                         <div class="grid-element" id="feels-like" style="order: 1">
-                            <img
-                                class="element-icon"
-                                src="/assets/thermometer-simple-bold.svg"
-                                alt="Ícone de Termômetro" />
+                            <img class="element-icon" src="/assets/thermometer-simple-bold.svg" alt="Ícone de Termômetro" />
 
                             <div class="element-titles">
                                 <h3 class="name">Sensação Térmica</h3>
@@ -120,9 +106,7 @@
                             </div>
                             <div class="expanded-element hidden-element">
                                 <p class="expanded-info" id="raining-status">Agora <strong>- chovendo</strong></p>
-                                <small class="expanded-small-info"
-                                    >Esta é uma aproximação não oficial baseada nos dados atuais obtidos</small
-                                >
+                                <small class="expanded-small-info">Esta é uma aproximação não oficial baseada nos dados atuais obtidos</small>
                             </div>
                         </div>
                         <div class="grid-element" id="wind-speed" style="order: 2">
@@ -133,10 +117,7 @@
                             </div>
                         </div>
                         <div class="grid-element" id="humidity" style="order: 4">
-                            <img
-                                class="element-icon"
-                                src="/assets/cloud-fog-bold.svg"
-                                alt="Ícone representando humidade" />
+                            <img class="element-icon" src="/assets/cloud-fog-bold.svg" alt="Ícone representando humidade" />
                             <div class="element-titles">
                                 <h3 class="name">Umidade do Ar</h3>
                                 <h2 class="data">- %</h2>
@@ -166,20 +147,14 @@
                             </div>
                         </div>
                         <div class="grid-element hidden-element" id="wind-direction" style="order: 6">
-                            <img
-                                class="element-icon"
-                                src="/assets/arrow-down-bold.svg"
-                                alt="Ícone de seta apotando para a direção atual do vento" />
+                            <img class="element-icon" src="/assets/arrow-down-bold.svg" alt="Ícone de seta apotando para a direção atual do vento" />
                             <div class="element-titles">
                                 <h3 class="name">Direção do Vento</h3>
                                 <h2 class="data">- °</h2>
                             </div>
                         </div>
                         <div class="grid-element hidden-element" id="wind-gust" style="order: 8">
-                            <img
-                                class="element-icon"
-                                src="/assets/tornado-bold.svg"
-                                alt="Ícone de tornado representando as rajadas de vento" />
+                            <img class="element-icon" src="/assets/tornado-bold.svg" alt="Ícone de tornado representando as rajadas de vento" />
                             <div class="element-titles">
                                 <h3 class="name">Rajadas de Vento</h3>
                                 <h2 class="data">- km/h</h2>
@@ -198,9 +173,7 @@
                                 <h2 class="data">- %</h2>
                             </div>
                             <div class="expanded-element">
-                                <p class="expanded-info" id="snow-probability-status">
-                                    <strong>- previsão</strong> de neve ou gelo
-                                </p>
+                                <p class="expanded-info" id="snow-probability-status"><strong>- previsão</strong> de neve ou gelo</p>
                             </div>
                         </div>
                     </div>
@@ -215,16 +188,11 @@
         <footer>
             <p class="footer-info">Os dados podem ser imprecisos em algumas ocasiões</p>
             <p class="footer-info">
-                Usamos os serviços da <strong>OpenWeather’s APIs</strong> - Entretanto não somos parceiros ou endossados
-                pela marca
+                Usamos os serviços da <strong>OpenWeather’s APIs</strong> - Entretanto não somos parceiros ou endossados pela marca
             </p>
             <p class="footer-info">
                 desenvolvido por Karell Lutkmeier -
-                <strong
-                    ><a class="github-link" href="https://github.com/devkarell/simple-weather" target="_blank"
-                        >Ver Repositório</a
-                    ></strong
-                >
+                <strong><a class="github-link" href="https://github.com/devkarell/simple-weather" target="_blank">Ver Repositório</a></strong>
             </p>
         </footer>
 
