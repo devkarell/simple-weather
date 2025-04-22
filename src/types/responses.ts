@@ -20,7 +20,7 @@ export type WeatherDataResponse = {
     wind: {
         speed: number;
         deg: number;
-        gust: number;
+        gust?: number | undefined;
     };
 
     rain?:
@@ -61,8 +61,3 @@ export type RegionDataResponse = [
         lon: number;
     }
 ];
-
-export type Geocode = {
-    lat: number;
-    lon: number;
-};
