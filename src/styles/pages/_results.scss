@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+$results-title: '.dashboard .title';
+$results-container: '.main-results';
+$results-infos: '.main-results .infos';
+
+#{$results-title} {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: $secondary-darkblue-400;
+    margin-bottom: 47px;
+}
+
+#{$results-container} {
+    @include flexElement(row, nowrap, space-between, stretch);
+    width: 84rem;
+    height: 26rem;
+    gap: 40px;
+    margin-bottom: 25px;
+
+    .weather-large-icon {
+        @include flexElement(row, nowrap, stretch, stretch);
+        width: 26rem;
+        height: 100%;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+#{$results-infos} {
+    @include flexElement(column, wrap, center, flex-start);
+    gap: 50px;
+    text-align: left;
+
+    .city-name,
+    .temperature {
+        font-size: 6.4rem;
+        font-weight: 700;
+        color: $primary-snow-500;
+    }
+
+    .province-name,
+    .datetime {
+        font-size: 2.3rem;
+        font-weight: 300;
+        color: $secondary-darkblue-400;
+    }
+}

@@ -1,0 +1,121 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../components/button' as *;
+$introduction-container: '.home .presentation-labels';
+$search-form: '.home .search-form';
+
+#{$introduction-container} {
+    @include flexElement(column, wrap, center, stretch);
+    width: 42.3rem;
+
+    .app-name {
+        font-size: 4.5rem;
+        font-weight: 700;
+        text-align: start;
+        text-wrap: nowrap;
+        margin-bottom: 17px;
+        color: $primary-snow-500;
+    }
+
+    .animated-labels {
+        @include flexElement(column, wrap, stretch, flex-start);
+        margin-bottom: 113px;
+        gap: 6px;
+
+        .animated-label {
+            font-weight: 400;
+            font-size: 2.5rem;
+            text-align: start;
+            text-wrap: nowrap;
+            color: $primary-snow-500;
+        }
+
+        .animated-label__unselected {
+            color: $secondary-darkblue-400;
+        }
+    }
+
+    .presentation-container {
+        @include flexElement(row, nowrap, stretch);
+        gap: 25px;
+
+        .presentation-label {
+            font-size: 1.9rem;
+            font-weight: 300;
+        }
+
+        #caret-right-icon {
+            font-size: 32px;
+        }
+    }
+}
+
+#{$search-form} {
+    @include flexElement(column, nowrap, center, stretch);
+    width: 39.3rem;
+
+    label {
+        font-weight: 400;
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .region-field {
+        @include flexElement(row, nowrap, space-between, stretch);
+        padding: 5px;
+        padding-left: 10px;
+        height: 5.5rem;
+        gap: 15px;
+        margin-bottom: 12px;
+
+        background-color: $containers-bg-neutralblue;
+        border: $border-template;
+        border-radius: $default-border-radius;
+
+        #city-input {
+            @include flexElement;
+            flex: 1 1 auto;
+            min-width: 10.6rem;
+            font-weight: 300;
+            font-size: 1.8rem;
+            background: none;
+            color: $primary-snow-500;
+
+            &::placeholder {
+                color: $secondary-darkblue-400;
+                font-weight: 300;
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    .advertise-title {
+        font-weight: 500;
+        font-size: 1.5rem;
+        transition: color 0.2s;
+    }
+
+    .invalid {
+        color: $invalid-title-red;
+    }
+
+    .valid {
+        color: $valid-title-green;
+    }
+
+    #invalid-city-label {
+        display: none;
+        margin-bottom: 28px;
+    }
+
+    #province-label {
+        margin-bottom: 16px;
+    }
+
+    #submit-user-region {
+        @extend %button-base;
+        height: 6.3rem;
+        font-weight: 300;
+        font-size: 1.8rem;
+    }
+}

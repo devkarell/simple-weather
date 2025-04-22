@@ -1,0 +1,12 @@
+@use '../abstracts/variables' as *;
+
+strong {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: $secondary-darkblue-300;
+}
+
+.design-div {
+    background-color: $containers-bg-neutralblue;
+    border-radius: 10px;
+}

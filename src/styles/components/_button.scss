@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as *;
+
+%button-base {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $secondary-darkblue-300;
+    cursor: pointer;
+
+    background-color: $buttons-bg-darkblue;
+    border: $border-template;
+    outline: $outline-template;
+    border-radius: $default-border-radius;
+    transition: background-color, outline-width, 0.1s;
+
+    &:hover {
+        background-color: $buttons-hover-darkblue;
+    }
+
+    &:active {
+        outline-width: $hover-outline-size;
+    }
+}

@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/thin/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/fill/style.css" />
 
         <!-- Seo -->
         <title>Simple Weather - UI/UX | Previsão do Tempo moderna com Dashboards</title>
@@ -31,7 +33,7 @@
                     </div>
                     <div class="presentation-container">
                         <p class="presentation-label">Busque sua cidade ao lado e veja qual é a previsão</p>
-                        <img class="presentation-chevron" src="/assets/caret-right.svg" alt=">" />
+                        <i class="ph-thin ph-caret-right" id="caret-right-icon"></i>
                     </div>
                 </div>
                 <div class="design-div"></div>
@@ -40,26 +42,25 @@
                     <div class="region-field">
                         <input
                             type="text"
-                            name="city"
                             class="region-input"
                             id="city-input"
-                            title="Nome da sua cidade"
-                            minlength="3"
+                            title=""
+                            minlength="4"
                             autocomplete="off"
                             placeholder="Digite sua cidade"
                             required
                             autofocus />
-                        <select name="province" class="region-input" id="province-input">
+                        <select class="region-input" id="province-input" style="display: none">
                             <option value=""></option>
                         </select>
                     </div>
-                    <small class="advertise-title invalid" id="invalid-city-label" style="display: none">Hmm.. Este nome não parece familiar</small>
+                    <small class="advertise-title invalid" id="invalid-city-label">Hmm.. Este nome não parece familiar</small>
                     <small class="advertise-title invalid" id="minimun-characters-label">• Mínimo de 3 caracteres</small>
                     <small class="advertise-title invalid" id="format-label">• Letras e espaços apenas</small>
                     <small class="advertise-title invalid" id="province-label">• O Estado/Região deve ser escolhido</small>
                     <button type="submit" id="submit-user-region">Buscar</button>
                 </form>
-                <img class="bg-logo" src="/assets/cloud-moon-fill-bg.svg" alt="" />
+                <i class="ph-fill ph-cloud" id="app-bg-cloud"></i>
             </section>
 
             <section class="dashboard" id="dashboard" style="display: none">
@@ -180,7 +181,7 @@
 
                     <div class="design-div hidden-element"></div>
                     <p id="last-search-time" class="hidden-element">última atualização há alguns instantes atrás</p>
-                    <strong><p id="search-cord" class="hidden-element">Latitude: - | Longitude: -</p></strong>
+                    <p id="search-cord" class="hidden-element"><strong>Latitude: - | Longitude: -</strong></p>
                 </article>
             </section>
         </main>

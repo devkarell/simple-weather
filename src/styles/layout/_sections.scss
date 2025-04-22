@@ -1,0 +1,35 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+main {
+    @include flexElement(column);
+    gap: 50vh;
+    padding-top: 12.5%;
+}
+
+section {
+    @include flexElement;
+}
+
+.home {
+    align-items: stretch;
+    gap: 40px;
+    position: relative;
+
+    .design-div {
+        width: 2px;
+    }
+
+    #app-bg-cloud {
+        position: absolute;
+        top: -38%;
+        left: -18%;
+        font-size: 318px;
+        z-index: -1;
+        color: $page-bg-darkblue-400;
+    }
+}
+
+.dashboard {
+    flex-direction: column;
+}

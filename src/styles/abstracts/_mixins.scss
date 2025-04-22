@@ -1,0 +1,24 @@
+@use './variables' as *;
+
+@mixin resetElement {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    outline: none;
+    color: $primary-snow-500;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+@mixin flexElement($direction: row, $wraps: wrap, $justify: center, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    flex-wrap: $wraps;
+}

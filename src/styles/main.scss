@@ -1,0 +1,20 @@
+// * base
+@use 'base/reset';
+@use 'base/base';
+
+// * layout
+@use 'layout/footer';
+@use 'layout/sections';
+
+// * components
+@use 'components/button';
+@use 'components/provincesSelect';
+
+// *  pages
+@use 'pages/home';
+@use 'pages/results';
+@use 'pages/dashboard';
+
+// ? others
+@use '../../node_modules/select2/dist/css/select2.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');

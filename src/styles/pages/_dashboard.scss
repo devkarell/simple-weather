@@ -1,0 +1,127 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+@use '../components/button' as *;
+$dashboard-container: '.dashboard .dashboard-infos';
+$dashboard-header: '.dashboard .dashboard-infos .dashboard-header';
+$dashboard-grid: '.dashboard .dashboard-infos .dashboard-data-grid';
+$grid-expanded-element: '.dashboard .dashboard-infos .dashboard-data-grid .grid-element .expanded-element';
+
+#{$dashboard-container} {
+    @include flexElement(column);
+    width: 84rem;
+    padding: 29px 27px;
+
+    background-color: $containers-bg-neutralblue;
+    border-radius: calc($default-border-radius * 2);
+    // TODO: transition: all 1s ease;
+
+    .design-div {
+        width: 70%;
+        height: 2px;
+        margin-bottom: 26px;
+        background-color: $containers-bg-lightblue;
+    }
+
+    #last-search-time {
+        font-size: 1.7rem;
+        font-weight: 400;
+        margin-bottom: 12px;
+        color: $secondary-darkblue-300;
+    }
+
+    #search-cord {
+        font-size: 1.7rem;
+        color: $secondary-darkblue-300;
+    }
+
+    .expanded {
+        margin-bottom: 47px;
+        gap: 44px;
+    }
+
+    .compacted {
+        margin-bottom: 34px;
+        gap: 52px;
+    }
+}
+
+#{$dashboard-header} {
+    @include flexElement(row, nowrap, space-between);
+    margin-bottom: 28px;
+    width: 100%;
+
+    .dashboard-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: $secondary-darkblue-400;
+    }
+
+    #expand-dashboard {
+        @extend %button-base;
+        width: 14.3rem;
+        height: 3.2rem;
+        font-family: 'inter', sans-serif;
+    }
+}
+
+#{$dashboard-grid} {
+    @include flexElement(row, wrap, space-between, flex-start);
+    width: 100%;
+    height: 100%;
+
+    .grid-element {
+        @include flexElement(column, wrap, flex-start);
+        position: relative;
+        gap: 6px;
+        width: calc(50% - 44px);
+
+        .element-icon {
+            width: 40px;
+            height: auto;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .element-titles {
+            @include flexElement(column, wrap, center, stretch);
+            width: calc(100% - 57px);
+            margin-left: 57px;
+            gap: 4px;
+            text-align: left;
+
+            .name {
+                font-size: 2.1rem;
+                font-weight: 400;
+                text-wrap: nowrap;
+                color: $secondary-darkblue-300;
+            }
+
+            .data {
+                font-size: 3.5rem;
+                font-weight: 700;
+                color: $primary-snow-500;
+            }
+        }
+    }
+}
+
+#{$grid-expanded-element} {
+    @include flexElement(column, wrap, center, flex-start);
+    width: calc(100% - 57px);
+    margin-left: 57px;
+
+    .expanded-info {
+        font-size: 1.7rem;
+        font-weight: 400;
+        margin-bottom: 2px;
+        color: $secondary-darkblue-300;
+    }
+
+    .expanded-small-info {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-top: 8px;
+        color: $secondary-darkblue-300;
+    }
+}
