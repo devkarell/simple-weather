@@ -1,4 +1,5 @@
-import './styles/global.scss';
+import './styles/main.scss';
 import './modules/dashboardHandler';
 import './modules/regionValidator';
-import './modules/provincesFiller';
+import { setupSelect } from './modules/provinceSelect';
+setupSelect();
