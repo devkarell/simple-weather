@@ -1,6 +1,6 @@
-import * as provinces from './provincesFiller.ts';
 import { searchWeatherByRegion } from '../services/openWeather.ts';
 import { showResults } from './weatherFormatter.ts';
+import { isProvince } from '../utils/provincesMap.ts';
 
 const regionForm = <HTMLFormElement>document.getElementById('search-form');
 const submitFormBtn = <HTMLButtonElement>document.getElementById('submit-user-region');
@@ -37,7 +37,7 @@ function isCityValid(): boolean {
 }
 
 export function isProvinceValid(): boolean {
-    const isProvinceValid = !!provinces.isValidProvinceByAcronym(provinceInput.value);
+    const isProvinceValid = !!isProvince(provinceInput.value);
     invalidProvinceAdvertise.classList.remove(isProvinceValid ? 'invalid' : 'valid');
     invalidProvinceAdvertise.classList.add(isProvinceValid ? 'valid' : 'invalid');
 
@@ -49,7 +49,13 @@ async function submitRegion(): Promise<void> {
     submitFormBtn.setAttribute('disabled', '');
 
     const sucessSubmit = await searchWeatherByRegion(cityInput.value, provinceInput.value);
-    if (!sucessSubmit || !sucessSubmit.weather) return console.warn('No weather data found!');
+
+    if (!sucessSubmit || !sucessSubmit.weather) {
+        invalidCityAdvertise.textContent = 'Nada foi encontrado, verifique a região selecionada e tente novamente!';
+        invalidCityAdvertise.style.display = 'inline';
+        submitFormBtn.removeAttribute('disabled');
+        return console.warn('No weather data found!');
+    }
 
     showResults(sucessSubmit, provinceInput.value);
     dashboard.style.display = 'flex';
