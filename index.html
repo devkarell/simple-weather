@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/thin/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@latest/src/fill/style.css" />
+
+        <!-- Seo -->
+        <title>Simple Weather - UI/UX | Previsão do Tempo moderna com Dashboards</title>
+        <meta
+            name="description"
+            content="Um projeto pessoal de um app moderno que mostra a previsão do tempo da sua cidade, tudo é mostrado por meio de uma Dashboard completa com um design minimalista." />
+        <meta property="og:title" content="Simple Weather - UI/UX" />
+        <meta property="og:image" content="https://github.com/devkarell/simple-weather/blob/main/public/assets/cloud-fill.svg" />
+        <meta
+            property="og:description"
+            content="Previsão do Tempo moderna com Dashboards | Um projeto pessoal de um app moderno que mostra a previsão do tempo da sua cidade, tudo é mostrado por meio de uma Dashboard completa com um design minimalista." />
+        <meta property="og:url" content="https://github.com/devkarell/simple-weather" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://github.com/devkarell/simple-weather" />
+      <script type="module" crossorigin src="/simple-weather/assets/index-V86FYmnx.js"></script>
+      <link rel="stylesheet" crossorigin href="/simple-weather/assets/index-b2qHtRJy.css">
+    </head>
+
+    <body>
+        <main>
+            <section class="home">
+                <div class="presentation-labels">
+                    <h1 class="app-name">Previsão do Tempo</h1>
+                    <div class="animated-labels">
+                        <h3 class="animated-label animated-label__unselected">Que horas é o pôr do Sol?</h3>
+                        <h3 class="animated-label animated-label__selected">Hoje está pra chuva?</h3>
+                        <h3 class="animated-label animated-label__unselected">Qual a sensação térmica?</h3>
+                    </div>
+                    <div class="presentation-container">
+                        <p class="presentation-label">Busque sua cidade ao lado e veja qual é a previsão</p>
+                        <i class="ph-thin ph-caret-right" id="caret-right-icon"></i>
+                    </div>
+                </div>
+                <div class="design-div"></div>
+                <form action="/search/" method="get" class="search-form" id="search-form">
+                    <label for="city-input">*Preencha este campo</label>
+                    <div class="region-field">
+                        <input
+                            type="text"
+                            class="region-input"
+                            id="city-input"
+                            title=""
+                            minlength="4"
+                            autocomplete="off"
+                            placeholder="Digite sua cidade"
+                            required
+                            autofocus />
+                        <select class="region-input" id="province-input" style="display: none">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <small class="advertise-title invalid" id="invalid-city-label">Hmm.. Este nome não parece familiar</small>
+                    <small class="advertise-title invalid" id="minimun-characters-label">• Mínimo de 3 caracteres</small>
+                    <small class="advertise-title invalid" id="format-label">• Letras e espaços apenas</small>
+                    <small class="advertise-title invalid" id="province-label">• O Estado/Região deve ser escolhido</small>
+                    <button type="submit" id="submit-user-region">Buscar</button>
+                </form>
+                <i class="ph-fill ph-cloud" id="app-bg-cloud"></i>
+            </section>
+
+            <section class="dashboard" id="dashboard" style="display: none">
+                <h2 class="title">Encontramos alguns resultados:</h2>
+                <div class="main-results" id="main-results">
+                    <div class="infos">
+                        <div class="region-info">
+                            <h2 class="city-name" id="city-name">undefined</h2>
+                            <h4 class="province-name" id="region-name">undefined, Brasil</h4>
+                        </div>
+                        <div class="datetime-temp-info">
+                            <h4 class="datetime" id="day-infos">Hoje é undefined, 00:00AM</h4>
+                            <h2 class="temperature" id="current-temperature">- °C</h2>
+                        </div>
+                    </div>
+                    <aside class="weather-large-icon" id="weather-large-icon"></aside>
+                </div>
+
+                <article class="dashboard-infos dashboard-infos-compact" id="dashboard-infos">
+                    <header class="dashboard-header">
+                        <h2 class="dashboard-title">Condições do Clima</h2>
+                        <button id="expand-dashboard">ver menos</button>
+                    </header>
+
+                    <div class="dashboard-data-grid compacted" id="dashboard-grid">
+                        <div class="grid-element" id="feels-like" style="order: 1">
+                            <img class="element-icon" src="/simple-weather/assets/thermometer-simple-bold.svg" alt="Ícone de Termômetro" />
+
+                            <div class="element-titles">
+                                <h3 class="name">Sensação Térmica</h3>
+                                <h2 class="data">- °C</h2>
+                            </div>
+
+                            <div class="expanded-element hidden-element">
+                                <p class="expanded-info" id="min-temp">Mínimas de <strong>- °C</strong></p>
+                                <p class="expanded-info" id="max-temp">Máximas de <strong>- °C</strong></p>
+                            </div>
+                        </div>
+                        <div class="grid-element" id="rain-probability" style="order: 3">
+                            <img class="element-icon" src="/simple-weather/assets/drop-fill.svg" alt="Ícone de gota d'água" />
+                            <div class="element-titles">
+                                <h3 class="name">Probabilidade de Chuva</h3>
+                                <h2 class="data">- %</h2>
+                            </div>
+                            <div class="expanded-element hidden-element">
+                                <p class="expanded-info" id="raining-status">Agora <strong>- chovendo</strong></p>
+                                <small class="expanded-small-info">Esta é uma aproximação não oficial baseada nos dados atuais obtidos</small>
+                            </div>
+                        </div>
+                        <div class="grid-element" id="wind-speed" style="order: 2">
+                            <img class="element-icon" src="/simple-weather/assets/wind-bold.svg" alt="Ícone de vento" />
+                            <div class="element-titles">
+                                <h3 class="name">Velocidade do Vento</h3>
+                                <h2 class="data">- km/h</h2>
+                            </div>
+                        </div>
+                        <div class="grid-element" id="humidity" style="order: 4">
+                            <img class="element-icon" src="/simple-weather/assets/cloud-fog-bold.svg" alt="Ícone representando humidade" />
+                            <div class="element-titles">
+                                <h3 class="name">Umidade do Ar</h3>
+                                <h2 class="data">- %</h2>
+                            </div>
+                        </div>
+                        <div class="grid-element hidden-element" id="clouds-percent" style="order: 5">
+                            <img class="element-icon" src="/simple-weather/assets/cloud-fill.svg" alt="Ícone de nuvem" />
+                            <div class="element-titles">
+                                <h3 class="name">Preenchimento de Nuvens</h3>
+                                <h2 class="data">- %</h2>
+                            </div>
+                            <div class="expanded-element">
+                                <p class="expanded-info" id="weather-status">Agora <strong>- nublado</strong></p>
+                            </div>
+                        </div>
+                        <div class="grid-element hidden-element" id="atmospheric-pressure" style="order: 7">
+                            <img class="element-icon" src="/simple-weather/assets/gauge-fill.svg" alt="Ícone de medidor de pressão" />
+                            <div class="element-titles">
+                                <h3 class="name">Pressão Atmosférica</h3>
+                                <h2 class="data">- hPa</h2>
+                            </div>
+                            <div class="expanded-element">
+                                <p class="expanded-info" id="atmospheric-pressure-status">
+                                    A pressão atmosférica
+                                    <strong>-</strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid-element hidden-element" id="wind-direction" style="order: 6">
+                            <img class="element-icon" src="/simple-weather/assets/arrow-down-bold.svg" alt="Ícone de seta apotando para a direção atual do vento" />
+                            <div class="element-titles">
+                                <h3 class="name">Direção do Vento</h3>
+                                <h2 class="data">- °</h2>
+                            </div>
+                        </div>
+                        <div class="grid-element hidden-element" id="wind-gust" style="order: 8">
+                            <img class="element-icon" src="/simple-weather/assets/tornado-bold.svg" alt="Ícone de tornado representando as rajadas de vento" />
+                            <div class="element-titles">
+                                <h3 class="name">Rajadas de Vento</h3>
+                                <h2 class="data">- km/h</h2>
+                            </div>
+                            <div class="expanded-element">
+                                <p class="expanded-info" id="wind-gust-status">
+                                    As rajadas de vento
+                                    <strong>-</strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid-element hidden-element" id="snow-probability" style="order: 9">
+                            <img class="element-icon" src="/simple-weather/assets/snowflake-bold.svg" alt="Ícone de neve" />
+                            <div class="element-titles">
+                                <h3 class="name">Neve ou Gelo</h3>
+                                <h2 class="data">- %</h2>
+                            </div>
+                            <div class="expanded-element">
+                                <p class="expanded-info" id="snow-probability-status"><strong>- previsão</strong> de neve ou gelo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="design-div hidden-element"></div>
+                    <p id="last-search-time" class="hidden-element">última atualização há alguns instantes atrás</p>
+                    <p id="search-cord" class="hidden-element"><strong>Latitude: - | Longitude: -</strong></p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <p class="footer-info">Os dados podem ser imprecisos em algumas ocasiões</p>
+            <p class="footer-info">
+                Usamos os serviços da <strong>OpenWeather’s APIs</strong> - Entretanto não somos parceiros ou endossados pela marca
+            </p>
+            <p class="footer-info">
+                desenvolvido por Karell Lutkmeier -
+                <strong><a class="github-link" href="https://github.com/devkarell/simple-weather" target="_blank">Ver Repositório</a></strong>
+            </p>
+        </footer>
+
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/select2/dist/js/select2.min.js"></script>
+        <script src="node_modules/select2/dist/js/i18n/pt-BR.js"></script>
+    </body>
+</html>
