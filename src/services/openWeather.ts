@@ -31,7 +31,9 @@ function getWeatherEndpoint(geocode: Geocode): string | undefined {
     if (!geocode || typeof geocode !== 'object') return;
     if (Number.isNaN(geocode.lat) || Number.isNaN(geocode.lon)) return;
 
-    const endpointURL = `https://api.openweathermap.org/data/2.5/weather?lat=${geocode.lat}&lon=${geocode.lon}&appid=${APP_ID}&lang=pt_br`;
+    const endpointURL = `https://api.openweathermap.org/data/2.5/weather?lat=${geocode.lat}&lon=${geocode.lon}&appid=${
+        import.meta.env.VITE_APP_ID
+    }&lang=pt_br`;
     return endpointURL;
 }
 
@@ -39,13 +41,13 @@ function getRegionDataEndpoint(cityName: string, provinceAcronym: string): strin
     if (typeof cityName !== 'string' || typeof provinceAcronym !== 'string') return;
 
     const encodedCityName = encodeURIComponent(cityName);
-    const endpointURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym},BR&limit=1&appid=${APP_ID}`;
+    const endpointURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym},BR&limit=1&appid=${
+        import.meta.env.VITE_APP_ID
+    }`;
     return endpointURL;
 }
 
 export async function searchWeatherByRegion(cityName: string, provinceAcronym: string): Promise<WeatherDataResponse | undefined> {
-    if (!APP_ID) return;
-
     const regionDataEndpoint = getRegionDataEndpoint(cityName, provinceAcronym);
     if (!regionDataEndpoint) return;
 
