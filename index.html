@@ -25,6 +25,22 @@
             rel="shortcut icon"
             href="https://raw.githubusercontent.com/devkarell/simple-weather/fa3273852b78dcf478a864fb9359c27d1175797f/public/assets/cloud-fill.svg"
             type="image/x-icon" />
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script type="module" defer>
+            import './src/select2/pt-BR.js';
+
+            $('#province-input').select2({
+                placeholder: 'Estado',
+                allowClear: false,
+                language: 'pt-BR',
+                width: 'style',
+                dropdownCssClass: 'province-select2-dropdown',
+                theme: 'SimpleWeather',
+            });
+        </script>
+        <script type="module" src="./src/App.js" defer></script>
     </head>
 
     <body>
@@ -202,10 +218,5 @@
                 <strong><a class="github-link" href="https://github.com/devkarell/simple-weather" target="_blank">Ver Repositório</a></strong>
             </p>
         </footer>
-
-        <script type="module" src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script type="module" src="node_modules/select2/dist/js/select2.min.js"></script>
-        <script type="module" src="node_modules/select2/dist/js/i18n/pt-BR.js"></script>
-        <script type="module" src="./src/App.ts"></script>
     </body>
 </html>

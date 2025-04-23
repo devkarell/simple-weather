@@ -1,4 +1,5 @@
 import { getProvincesList } from '../utils/provincesMap';
+import { isProvinceValid } from './regionValidator';
 
 export function setupSelect(): void {
     const provincesList = getProvincesList();
@@ -11,12 +12,5 @@ export function setupSelect(): void {
         provinceInput.appendChild(newProvince);
     }
 
-    $('#province-input').select2({
-        placeholder: 'Estado',
-        allowClear: false,
-        language: 'pt-BR',
-        width: 'style',
-        dropdownCssClass: 'province-select2-dropdown',
-        theme: 'SimpleWeather',
-    });
+    $('#province-input').on('select2:select', isProvinceValid);
 }

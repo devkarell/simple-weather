@@ -78,4 +78,3 @@ regionForm.addEventListener('submit', (e) => {
 });
 
 cityInput.addEventListener('input', isCityValid);
-$('#province-input').on('select2:select', isProvinceValid);
