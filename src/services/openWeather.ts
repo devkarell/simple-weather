@@ -41,7 +41,7 @@ function getRegionDataEndpoint(cityName: string, provinceAcronym: string): strin
     if (typeof cityName !== 'string' || typeof provinceAcronym !== 'string') return;
 
     const encodedCityName = encodeURIComponent(cityName);
-    const endpointURL = `http://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym},BR&limit=1&appid=${
+    const endpointURL = `https://api.openweathermap.org/geo/1.0/direct?q=${encodedCityName},BR-${provinceAcronym},BR&limit=1&appid=${
         import.meta.env.VITE_APP_ID
     }`;
     return endpointURL;
